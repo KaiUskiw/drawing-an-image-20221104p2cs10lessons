@@ -1,7 +1,9 @@
 //Background Image Example
 //
 //Global variables
-int imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight, appWidth, appHeight;
+int appWidth, appHeight;
+float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
+PImage pic;
 //
 size(1000, 800); //Landscape
 //Copy Display Orientation
@@ -9,6 +11,7 @@ appWidth = width;
 appHeight = height;
 //
 //population
+pic = loadImage("");
 imageBackgroundX = appWidth*0;
 imageBackgroundY = appHeight*0;
 imageBackgroundWidth = appWidth-1;
