@@ -32,6 +32,9 @@ if ( widthLarger == true ) imageHeightRatio = smallerDimension / largerDimension
 if ( heightLarger == true ) imageWidthRatio = smallerDimension / largerDimension;
 if ( heightLarger == true ) imageHeightRatio = largerDimension / largerDimension;
 //
+picWidthAdjusted = ;
+picHeightAdjusted = ;
+//
 //population
 pic = loadImage("https://imagej.nih.gov/ij/images/baboon.jpg");
 BackgroundimageX = appWidth*0;
