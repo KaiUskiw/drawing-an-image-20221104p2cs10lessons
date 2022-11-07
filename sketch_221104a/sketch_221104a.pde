@@ -5,6 +5,8 @@ int appWidth, appHeight;
 float BackgroundimageX, BackgroundimageY, BackgroundimageWidth, BackgroundimageHeight;
 PImage pic;
 Boolean nightmode=false;
+float smallerDimension, largerDimension;
+Boolean widthLarger=false, heightLarger=false;
 //
 size(1000, 800); //Landscape
 //Copy Display Algorithm from Hello World
@@ -20,7 +22,15 @@ largerDimention = picWidth;
 smallerDimention = picHeight;
 widthLarger = true;
 } else { //False if Portrait
+largerDimention = picHeight;
+smallerDimention = picWidth;
+heightLarger = true;
 }
+//
+if ( widthLarger == true ) imageWidthRatio = largerDimension / largerDimension;
+if ( widthLarger == true ) imageHeightRatio = smallerDimension / largerDimension;
+if ( heightLarger == true ) imageWidthRatio = smallerDimension / largerDimension;
+if ( heightLarger == true ) imageHeightRatio = largerDimension / largerDimension;
 //
 //population
 pic = loadImage("https://imagej.nih.gov/ij/images/baboon.jpg");
