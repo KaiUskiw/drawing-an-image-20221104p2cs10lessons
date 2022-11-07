@@ -2,21 +2,40 @@
 //
 //Global variables
 int appWidth, appHeight;
-float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
+float BackgroundimageX, BackgroundimageY, BackgroundimageWidth, BackgroundimageHeight;
 PImage pic;
+Boolean nightmode=false;
 //
 size(1000, 800); //Landscape
-//Copy Display Orientation
+//Copy Display Algorithm from Hello World
 appWidth = width;
 appHeight = height;
 //
-//population
-pic = loadImage("");
-imageBackgroundX = appWidth*0;
-imageBackgroundY = appHeight*0;
-imageBackgroundWidth = appWidth-1;
-imageBackgroundHeight = appHeight-1;
-//Rectangle Layout and Image drawing to CANVAS
-rect(imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight);
+//Aspect Ratio Calculations
+int picWidth = 512;
+int picHeight = 512;
+//Image Orientation: Lanscape, Portrait, Square
+if ( picWidth >= picHeight ) { //True if Landscape or Square
+largerDimention = picWidth;
+smallerDimention = picHeight;
+widthLarger = true;
+} else { //False if Portrait
+}
 //
-//image(pic, imageX, imageY, imageWidth, imageHeight);
+//population
+pic = loadImage("https://imagej.nih.gov/ij/images/baboon.jpg");
+BackgroundimageX = appWidth*0;
+BackgroundimageY = appHeight*0;
+BackgroundimageWidth = appWidth-1;
+BackgroundimageHeight = appHeight-1;
+//
+//Rectangle Layout and Image drawing to CANVAS
+rect(BackgroundimageX, BackgroundimageY, BackgroundimageWidth, BackgroundimageHeight);
+//
+//if () {} else {} for Binary Choice, no single if
+if (nightmode == false) tint(255, 128); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
+if (nightmode == true) tint(64, 64, 40); //RGB: Night Mode;
+//
+tint(255, 128, 128); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
+//tint(64, 64, 40); //RGB: Night Mode
+image(pic, BackgroundimageX, BackgroundimageY, BackgroundimageWidth, BackgroundimageHeight);
