@@ -3,29 +3,45 @@
 //Global variables
 int appWidth, appHeight;
 float BackgroundimageX, BackgroundimageY, BackgroundimageWidth, BackgroundimageHeight;
+
 PImage pic;
 Boolean nightmode=false;
 float smallerDimension, largerDimension;
 Boolean widthLarger=false, heightLarger=false;
 //
-size(1000, 800); //Landscape
-//Copy Display Algorithm from Hello World
-appWidth = width;
-appHeight = height;
+void setup() 
+{
+ size(1000, 800); //Landscape
+ //Copy Display Algorithm from Hello World
+ appWidth = width;
+ appHeight = height;
+  //
+  //Image Dimenions for Aspect Ratio
+  int picWidth = 512;
+  int picHeight = 512;
+  //
+  float smallerdimension, largerdimension;
+  //Image Orientation: Lanscape, Portrait, Square
+  if ( picWidth >= picHeight ) { //True if Landscape or Square
+  largerDimension = picWidth;
+  smallerDimension = picHeight;
+  widthLarger = true;
+  } else { //False if Portrait
+  largerDimention = picHeight;
+  smallerDimention = picWidth;
+  heightLarger = true;
+  }
+}//End stup
+//
+void draw() {}//End draw
+void keyPressed() {}//End keyPressed
+void mousePressed() {}//End mousePressed
+
 //
 //Aspect Ratio Calculations
 int picWidth = 512;
 int picHeight = 512;
-//Image Orientation: Lanscape, Portrait, Square
-if ( picWidth >= picHeight ) { //True if Landscape or Square
-largerDimention = picWidth;
-smallerDimention = picHeight;
-widthLarger = true;
-} else { //False if Portrait
-largerDimention = picHeight;
-smallerDimention = picWidth;
-heightLarger = true;
-}
+
 //
 if ( widthLarger == true ) imageWidthRatio = largerDimension / largerDimension;
 if ( widthLarger == true ) imageHeightRatio = smallerDimension / largerDimension;
