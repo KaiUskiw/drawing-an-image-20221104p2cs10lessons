@@ -3,7 +3,6 @@
 //Global variables
 int appWidth, appHeight;
 float BackgroundimageX, BackgroundimageY, BackgroundimageWidth, BackgroundimageHeight;
-
 PImage pic;
 Boolean nightmode=false;
 float smallerDimension, largerDimension;
@@ -54,8 +53,8 @@ void draw() {
 }//End draw
 void keyPressed() {}//End keyPressed
 void mousePressed() {
- if (mouseButton == LEFT)
- if (mouseButton == RIGHT)
+ if (mouseButton == LEFT)nightMode = true;
+ if (mouseButton == RIGHT)nightMode = false;
 }//End mousePressed
 
 //
