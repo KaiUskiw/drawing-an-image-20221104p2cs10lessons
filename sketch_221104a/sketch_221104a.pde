@@ -2,11 +2,17 @@
 //
 //Global variables
 int appWidth, appHeight;
-float BackgroundimageX, BackgroundimageY, BackgroundimageWidth, BackgroundimageHeight;
+float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
+float bottomHalfX, bottomHalfY, bottomHalfWidth, bottomHalfHeight;
 PImage pic;
-Boolean nightmode=false;
+float picWidthAdjusted=0.0, picHeightAdjusted=0.0;
+Boolean nightmode = false;
 float smallerDimension, largerDimension;
-Boolean widthLarger=false, heightLarger=false;
+Boolean widthLarger = false, heightLarger = false;
+int tintDayMode=255, tintDayModeOpacity=50, tintRed=64, tintGreen=64, tintBlue=40, tintNightModeOpacity=85;
+float topHalfX, topHalfY, topHalfWidth, topHalfHeight;
+
+//
 //
 void setup() 
 {
@@ -39,23 +45,47 @@ void setup()
   //
   //population
   pic = loadImage("https://imagej.nih.gov/ij/images/baboon.jpg");
-  BackgroundimageX = appWidth*0;
-  BackgroundimageY = appHeight*0;
-  BackgroundimageWidth = appWidth-1;
-  BackgroundimageHeight = appHeight-1;
+  backgroundImageX = appWidth*0;
+  backgroundImageY = appHeight*0;
+  backgroundImageWidth = appWidth-1;
+  backgroundImageHeight = appHeight-1;
+  topHalfX = appWidth * 1/3;
+  topHalfY = appHeight * 1/4;
+  topHalfWidth = appWidth * 1/3;
+  topHalfHeight = appHeight * 1/4;
+  bottomHalfX = appWidth * 1/2 ;
+  bottomHalfY = appHeight * 1/2;
+  bottomHalfWidth = appWidth * 1/2;
+  bottomHalfWidth = appHeight * 1/2;
   //
+  //Rectangular layout and Image Drawing to CANVAS
+  rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  rect( topHalfX, topHalfY, topHalfWidth, topHalfHeight );
+  rect( bottomHalfX, bottomHalfY, bottomHalfWidth, bottomHalfWidth);
 }//End stup
 //
 void draw() {
-  if (nightmode == false) tint(255, 128); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
+  if (nightmode == false) tint(tintDayMode, tintDayModeOpacity); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
   if (nightmode == true) tint(64, 64, 40); //RGB: Night Mode;
   //
 }//End draw
 void keyPressed() {}//End keyPressed
 void mousePressed() {
- if (mouseButton == LEFT)nightMode = true;
- if (mouseButton == RIGHT)nightMode = false;
-}//End mousePressed
+  //
+  //Mouse Pressed will control background image
+ if (mouseButton == LEFT) {
+ nightMode = true;
+ rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
+ tint(tintDayMode, tintDayModeOpacity); //RGB: Night Mode
+ image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
+ }
+ 
+ if (mouseButton == RIGHT) {
+  nightMode = false;
+    rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+    tint(64, 64, 40, 85); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
+    image(pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
+  }//End mousePressed
 
 //
 //Aspect Ratio Calculations
@@ -95,4 +125,4 @@ rect(BackgroundimageX, BackgroundimageY, BackgroundimageWidth, BackgroundimageHe
 //
 tint(255, 128, 128); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
 //tint(64, 64, 40); //RGB: Night Mode
-image(pic, BackgroundimageX, BackgroundimageY, BackgroundimageWidth, BackgroundimageHeight);
+}
