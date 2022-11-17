@@ -128,7 +128,7 @@ void setup()
 void draw()
 {
   image(pic2, topX, topY, picWidthAdjusted2, picHeightAdjusted2);
-  image(pic3, bottomX, bottomY, bottomWidth, bottomHeight);
+  image(pic3, bottomX, bottomY, picWidthAdjusted3, picHeightAdjusted3);
 }//End draw
 //
 void keyPressed() {
