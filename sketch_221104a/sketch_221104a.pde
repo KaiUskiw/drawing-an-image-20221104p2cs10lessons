@@ -7,7 +7,7 @@ int appWidth, appHeight;
 float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
 float topX, topY, topWidth, topHeight;
 float bottomX, bottomY, bottomWidth, bottomHeight;
-float picWidthAdjusted=0.0, picHeightAdjusted=0.0;
+float picWidthAdjusted1=0.0, picHeightAdjusted1=0.0;
 float picWidthAdjusted2=0.0, picHeightAdjusted2=0.0;
 float picWidthAdjusted3=0.0, picHeightAdjusted3=0.0;
 PImage pic, pic2, pic3;
@@ -21,15 +21,15 @@ void setup()
   appWidth = width;
   appHeight = height;
   //
-  //Image Dimensions for Aspect Ratio
+  //Image Dimensions for Aspect Ratio: image meta data
   //baboon.jpg
   //Note: Dimensions are found in the image file / Right Click / Properties / Details
-  int picWidth = 800;
+  int picWidth = 800; //baboon Landscape
   int picHeight = 600;
-  int picWidth2 = 860;
-  int picHeight2 = 529;
-  //int picWidth3 = 325;
-  //int picHeight3 = 485;
+  int picWidth2 = 860; //baboon Landscape
+  int picHeight2 = 529; 
+  int picWidth3 = 325; //baboon Lanscape
+  int picHeight3 = 485;
   //
   //Image Orientation: Landscape, Square, Portrait
   float smallerDimension, largerDimension, imageWidthRatio=0.0, imageHeightRatio=0.0;
@@ -49,15 +49,15 @@ void setup()
   //Teaching Example: width is known to be larger
   //Better Image Stretch Algorithm
   if ( appWidth >= picWidth ) {
-    picWidthAdjusted = appWidth; //Stretching larger dimension
+    picWidthAdjusted1 = appWidth; //Stretching larger dimension
     //
     if ( widthLarger == true ) imageWidthRatio = largerDimension / largerDimension;
     //
     if ( appHeight >= picHeight ) {
       //Calculated Dimension b/c smaller than width
       if ( widthLarger == true ) imageHeightRatio = smallerDimension / largerDimension;
-      picHeightAdjusted = picWidthAdjusted * imageHeightRatio;
-      if ( appHeight < picHeightAdjusted ) {
+      picHeightAdjusted1 = picWidthAdjusted1 * imageHeightRatio;
+      if ( appHeight < picHeightAdjusted1 ) {
         println("STOP: image is too big for CANVAS");
         exit(); //stop further use of the APP
       }
@@ -79,22 +79,22 @@ void setup()
   backgroundImageWidth = appWidth-1;
   backgroundImageHeight = appHeight-1;
   topX = appWidth * 1/4;
-  topY = appHeight * 1/20;
+  topY = appHeight * 5/20;
   topWidth = appWidth * 1/2;
-  topHeight = appHeight * 13/20;
+  topHeight = appHeight * 9/20;
   bottomX = appWidth *1/2;
   bottomY = appHeight * 3/4;
-  bottomWidth = appWidth * 1/4;
+  bottomWidth = appWidth * 3/4;
   bottomHeight = appHeight * 4/20;
   //
   //Verify Variable Values after Algorithm
   println("App Width:", appWidth, " and App Height:", appHeight);
   println("Image dimensions are:", picWidth, picHeight);
   println("Larger Image dimension is:", largerDimension);
-  println("Adjusted Image dimesnions are (stretch is goal):", picWidthAdjusted, picHeightAdjusted);
+  println("Adjusted Image dimesnions are (stretch is goal):", picWidthAdjusted1, picHeightAdjusted1);
   //
   //Rectangular Layout and Image Drawing to CANVAS
-  //rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
   rect( topX, topY, topWidth, topHeight );
   rect( bottomX, bottomY, bottomWidth, bottomHeight );
   //
@@ -122,7 +122,7 @@ void setup()
   //Background Image must be single executed code
   if ( nightMode == false ) tint(tintDayMode, tintDayModeOpacity); //Gray Scale, Day use: use 1/2 tint value for white (i.e. 128/256=1/2)
   if ( nightMode == true ) tint(tintRed, tintGreen, tintBlue, tintNightModeOpacity); //RGB: Night Mode
-  image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
+  image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted1, picHeightAdjusted1);
 }//End setup
 //
 void draw()
@@ -141,13 +141,13 @@ void mousePressed() {
     nightMode = true;
     rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
     tint(64, 64, 40, 85); //RGB: Night Mode
-    image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
+    image( pic, backgroundImageX, backgroundImageY, picWidthAdjusted1, picHeightAdjusted1);
   }
   if ( mouseButton == RIGHT ) {
     nightMode = false;
     rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
     tint(255, 50); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
-    image(pic, backgroundImageX, backgroundImageY, picWidthAdjusted, picHeightAdjusted);
+    image(pic, backgroundImageX, backgroundImageY, picWidthAdjusted1, picHeightAdjusted1);
   }
 }//End mousePressed
 //
